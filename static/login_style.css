@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -7,48 +7,40 @@
 .ubuntu-medium {
     font-family: "Ubuntu", sans-serif;
     font-weight: 400;
-    /* font-style: italic; */
-  }
+}
 
-  
-
-.wrapper{
+.wrapper {
     display: flex;
     justify-content: center;
-    align-items: center ;
+    align-items: center;
     height: 100vh;
     width: 100vw;
-    /* background-image: url("./pics/61804.jpg");
-    background-size: contain; */
-    /* background-image:linear-gradient(#6386a887, #f2f6ff); */
 }
-.container{
+
+.container {
     display: flex;
     justify-content: center;
-    align-items: center ;
+    align-items: center;
     height: 73%;
     width: 73%;
-    background-image:linear-gradient(#d6ebff, #f2f6ff);
+    background-image: linear-gradient(#d6ebff, #f2f6ff);
     border-radius: 30px;
     box-shadow: rgba(0, 0, 0, 0.418) 2px 3px 8px;
-    /* border: 2px solid red; */
 }
-.left{
+
+.left {
     background-image: url(../static/doctor.jpeg);
-    
     height: 100%;
     width: 100%;
-    background-size:cover;
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     border-bottom-right-radius: 70px;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
-    /* border: 2px solid red; */
 }
-.right{
-    /* border: 2px solid red; */
-    
+
+.right {
     width: 100%;
     height: 100%;
     display: flex;
@@ -59,9 +51,9 @@
     border-top-left-radius: 70px;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
-   }
-.content{
-    /* border: 2px solid red; */
+}
+
+.content {
     height: 70%;
     width: 50%;
     display: flex;
@@ -69,41 +61,41 @@
     justify-content: space-evenly;
     align-items: center;
     border-radius: 10px;
-    background-color: white; 
+    background-color: white;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-.form{
-    /* border: 2px solid red; */
+.form {
     width: 80%;
 }
-.form-text{
+
+.form-text {
     color: rgb(59, 99, 243);
-    
 }
-.input-text{
+
+.input-text {
     width: 100%;
     border: none;
     border-bottom: 1px solid rgb(91, 88, 88);
     padding: 4px 0;
     margin: 7px 0;
 }
-.btn{
-    background-color: rgb(56 123 255);
+
+.btn {
+    background-color: rgb(56, 123, 255);
     width: 100%;
     height: 17%;
     border-radius: 7px;
     border: none;
-    transition:all ease-in 0.2s;
-    
+    transition: all ease-in 0.2s;
 }
-.btn:hover{
+
+.btn:hover {
     background-color: rgb(4, 28, 76);
     color: white;
 }
 
-.heading{
-    /* border: 2px solid red; */
+.heading {
     width: 50%;
     height: 10%;
     display: flex;
@@ -113,13 +105,10 @@
     box-shadow: rgba(0, 0, 0, 0.137) -1px -1px 8px;
     padding: 5px;
     color: rgb(44, 42, 42);
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    /* font-size: 1.01rem; */
+    border-radius: 10px;
 }
-.text{
+
+.text {
     font-size: small;
     padding: 3px;
 }
