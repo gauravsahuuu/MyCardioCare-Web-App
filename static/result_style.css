@@ -1,0 +1,149 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.ubuntu-medium {
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 700;
+}
+
+body {
+    height: 100vh; 
+    width: 100vw;  
+    background-image: url("../static/bg.png");
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed; 
+    overflow-x: hidden;
+}
+
+.mycontainer {
+    position: relative;
+    padding: 0;
+    height: 100vh; 
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.container-fluid {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+
+.ai-heading {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+.AI {
+    font-size: 1.5rem;
+    padding: 10px;  
+    text-align: center;
+}
+
+.report {
+    margin-top: 10px;
+}
+
+.mynavbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar {
+    height: 65.8px;
+    width: 100%;
+    position: fixed;
+}
+
+.navbar-brand {
+    margin-left: 10px;
+}
+
+.flask {
+    position: absolute;
+    top: calc(50% + 40px);
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    padding: 7px 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    text-wrap: wrap;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    height: 80vh;
+    overflow-y: auto;
+}
+
+.ankerBut {
+    text-decoration: none;
+    font-size: large;
+    color: inherit;
+    font-weight: 700;
+    width: 50%;
+    margin-right: 15px;
+    height: 100%;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.btn-success {
+    background-color: #0b5ed7;
+    margin: 0 5px;
+}
+
+#userButton {
+    border-radius: 5px;
+    padding: 10px;
+    border: none;
+    background-color: #0d6efd;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.mymargin {
+    margin: 20px;
+}
+
+@media (max-width: 768px) {
+    #chatbox {
+        margin: 10px;
+        height: 80vh;
+    }
+}
+
+#button:hover {
+    background-color: #0b5ed7;
+}
+
+.d-flex {
+    margin-right: 15px;
+}
+
+.yo {
+    text-decoration: none;
+    color: inherit;
+}
+
+.btn-outline-success {
+    background-color: #0b5ed7;
+    padding: 0.3rem 2.3rem;
+    color: white;
+    font-size: 18px;
+    z-index: 0;
+}
+
+.btn-outline-success:hover {
+    cursor: pointer;
+}
