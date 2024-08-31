@@ -267,7 +267,6 @@ def predict():
             response = response.replace('\n', '<br>')
             response = convert_bold_to_html(response)
 
-
         # Send email to the customer
         msg = Message('Disease Prediction Result', recipients=[customer_email])
         msg.body = message
