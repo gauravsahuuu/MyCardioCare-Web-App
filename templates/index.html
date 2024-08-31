@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disease Prediction Chatbot</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    <style>
+      /* style.css */
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    z-index: -1;
+    background-image: url('static/bg.png');
+    background-size: contain;
+  }
+  
+  /* .bg {
+    background-image: url('static/background.jpg');
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  } */
+
+  #wrapper{
+    /* height: calc(100vh - 5rem); */
+    overflow-x: hidden;
+
+  }
+  
+  #chatbox {
+    margin:auto;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    height: 85vh; /* 70% of viewport height */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow-y: auto;
+  }
+  
+  #chatlog {
+    max-height: calc(70vh - 120px); /* Adjusted height for messages and input area */
+    overflow-y: auto;
+    padding-bottom: 10px;
+  }
+  
+  .message {
+    padding: 10px 15px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    max-width: 80%;
+    word-wrap: break-word;
+  }
+  
+  .bot-message {
+    background-color: #d1e7dd;
+    color: #0f5132;
+    align-self: flex-start;
+  }
+  
+  .user-message {
+    background-color: #cfe2ff;
+    color: #084298;
+    align-self: flex-end;
+  }
+  
+  #user-input {
+    width: 95%;
+    display: flex;
+    margin-top: 10px;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-bottom: 20px; /* Bottom margin for the input area */
+    margin-left: auto;
+    margin-right: auto;
+    position: sticky;
+    bottom: 10px;
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  #userText {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    margin-right: 10px;
+    font-size: 16px;
+    width: 70%;
+    
+    /* width: phle jaisa krna toh isko change krdo */
+  }
+  .mic{
+    position: absolute;
+    right:17%;
+    cursor: pointer;
+  }
+  
+  #userButton {
+    border-radius: 5px; /* Using pixels for a noticeable change */
+    padding: 10px;
+    /* margin-left: 10px; */
+    border: none;
+    background-color: #0d6efd;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .mymargin {
+    margin: 20px;
+    height:70vh;
+  }
+  
+  @media (max-width: 768px) {
+    #chatbox {
+        margin: 10px;
+        height: 80vh;
+    }
+  }
+  /* @media (max-width: 100px) {
+    .navbar {
+        margin: 1px;
+        height: 40vh;
+    }
+  } */
+  
+  /* #button:hover {
+    background-color: #0b5ed7;
+  } */
+ /* .bg{
+  display: flex;
+  position: relative;
+ } */
+ .d-flex{
+  margin-right: 15px;
+ }
+ .yo{
+  text-decoration: none;
+  color:inherit;
+ }
+ .btn-outline-success{
+   background-color: #0b5ed7;
+   padding: 0.3rem 2.3rem;
+   color: white;
+   font-size: 18px;
+   z-index: 0;
+  }
+  
+  
+
+.btn-outline-success:hover{
+  cursor: pointer;
+}
+.navbar{
+  height:65.8px ;
+}
+.navbar-brand{
+  margin-left: 10px;
+}
+
+.mic-recording {
+            border: 2px solid red;
+            border-radius: 50%;
+            padding: 5px;
+        }
+
+    </style>
+    
+</head>
+<body>
+    <div class="bg">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src="../static/heart pic.png" alt="Bootstrap" width="160.4" height="55.8">
+                </a>
+                <!-- <a class="navbar-brand mx-auto" href="#">MyCardioCare</a> Centered Navbar Brand -->
+                       
+                    <div class="d-flex" role="search">
+                        <button class="btn btn-outline-success" type="submit" style="margin-right:6px;"><a class="yo" href="{{ url_for('landing') }}">Home</a></button>
+                        <button class="btn btn-outline-success" type="submit"><a class="yo" href="{{ url_for('home') }}">Heart Health Tool</a></button>
+                        <!-- <button class="btn btn-outline-success" type="submit"><a href="{{ url_for('about') }}">About</a></button> -->
+                    </div>
+            </div>
+        </nav>
+    </div>
+
+        <div class="mymargin">
+            <div id="chatbox">
+                <div id="chatlog" class="d-flex flex-column"></div>
+                <div id="user-input">
+                    <i class="fa-solid fa-microphone mic" onclick="startSpeechRecognition()"></i>
+                    <input type="text" id="userText" placeholder="Type here..." onkeydown="if(event.key === 'Enter') sendMessage()">
+                    <button id="userButton" onclick="sendMessage()">Send</button>
+                </div>
+            </div>
+
+            <form id="predictionForm" action="/predict" method="post" style="display: none;">
+                <input type="hidden" name="customer_name" id="customer_name">
+                <input type="hidden" name="customer_email" id="customer_email">
+                <input type="hidden" name="general_health" id="general_health">
+                <input type="hidden" name="checkup" id="checkup">
+                <input type="hidden" name="exercise" id="exercise">
+                <input type="hidden" name="skin_cancer" id="skin_cancer">
+                <input type="hidden" name="other_cancer" id="other_cancer">
+                <input type="hidden" name="depression" id="depression">
+                <input type="hidden" name="diabetes" id="diabetes">
+                <input type="hidden" name="arthritis" id="arthritis">
+                <input type="hidden" name="sex" id="sex">
+                <input type="hidden" name="age" id="age">
+                <input type="hidden" name="height" id="height">
+                <input type="hidden" name="weight" id="weight">
+                <input type="hidden" name="smoking" id="smoking">
+                <input type="hidden" name="alcohol" id="alcohol">
+                <input type="hidden" name="fruit" id="fruit">
+                <input type="hidden" name="vegetable" id="vegetable">
+                <input type="hidden" name="potato" id="potato">
+            </form>
+
+            {% if prediction_text %}
+                <div class="mt-3">
+                    <h3>{{ prediction_text }}</h3>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <script>
+        let currentStep = 0;
+        const steps = [
+            { question: "What is your name?", field: "customer_name" },
+            { question: "What is your email?", field: "customer_email", type: "email" },
+            { question: "Rate your general health! (poor/fair/good/very good/excellent)", field: "general_health", type: "generalhealth"},
+            { question: "Within how many years ago did you last have your routine checkup? (1/2/5/5+/Never)", field: "checkup", type: "checkup"},
+            { question: "During the past month, other than your regular job, did you participate in any physical activities or exercises? (yes/no)", field: "exercise", type: "yesno" },
+            { question: "Do you have skin cancer? (yes/no)", field: "skin_cancer", type: "yesno" },
+            { question: "Do you have any other cancer? (yes/no)", field: "other_cancer", type: "yesno" },
+            { question: "Are you suffering from depression? (yes/no)", field: "depression", type: "yesno" },
+            { question: "Do you have diabetes? (yes/no)", field: "diabetes", type: "yesno" },
+            { question: "Do you have arthritis? (yes/no)", field: "arthritis", type: "yesno" },
+            { question: "What's your gender? (male/female)", field: "sex", type: "sex" },
+            { question: "What's your age? (Note: You must be 18+)", field: "age", type: "age" },
+            { question: "What's your height (in centimetres)?", field: "height", type: "height" },
+            { question: "What's your weight? (in kilogram)", field: "weight", type: "weight" },
+            { question: "Do you smoke frequently? (yes/no)", field: "smoking", type: "yesno" },
+            { question: "Do you consume alcohol frequently? (yes/no)", field: "alcohol", type: "yesno" },
+            { question: "Do you eat fruits frequently? (yes/no)", field: "fruit", type: "yesno" },
+            { question: "Do you eat green vegetables frequently? (yes/no)", field: "vegetable", type: "yesno" },
+            { question: "Do you eat fried potatoes frequently? (yes/no)", field: "potato", type: "yesno" },
+        ];
+
+        function startSpeechRecognition() {
+            const micIcon = document.querySelector('.mic');
+            if (window.hasOwnProperty('webkitSpeechRecognition')) {
+                const recognition = new webkitSpeechRecognition();
+                recognition.continuous = false;
+                recognition.interimResults = false;
+                recognition.lang = "en-US";
+                recognition.start();
+
+                micIcon.classList.add('mic-recording'); // Add border when recording starts
+
+                recognition.onresult = function(event) {
+                    document.getElementById('userText').value = event.results[0][0].transcript;
+                    recognition.stop();
+                };
+
+                recognition.onerror = function(event) {
+                    recognition.stop();
+                    micIcon.classList.remove('mic-recording'); // Remove border on error
+                };
+
+                recognition.onend = function() {
+                    micIcon.classList.remove('mic-recording'); // Remove border when recording ends
+                };
+            }
+        }
+
+        function initializeChat() {
+            const chatlog = document.getElementById("chatlog");
+            const botMessage = document.createElement("div");
+            botMessage.className = "message bot-message";
+            botMessage.textContent = steps[0].question;
+            chatlog.appendChild(botMessage);
+            chatlog.scrollTop = chatlog.scrollHeight;
+        }
+
+        function isValidEmail(email) {
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            return emailPattern.test(email);
+        }
+
+        function isYesNoAnswer(answer) {
+            return answer.toLowerCase() === "yes" || answer.toLowerCase() === "no";
+        }
+
+        function isValidGeneralHealth(answer) {
+            const validAnswers = ["poor", "fair", "good", "very good", "excellent"];
+            return validAnswers.includes(answer.toLowerCase());
+        }
+
+        function isValidCheckup(answer) {
+            const validAnswers = ["1", "2", "5", "5+", "never"];
+            return validAnswers.includes(answer.toLowerCase());
+        }
+
+        function isValidSex(answer) {
+            return answer.toLowerCase() === "male" || answer.toLowerCase() === "female";
+        }
+
+        function isValidAge(answer) {
+            const age = parseInt(answer);
+            return age >= 18 && age <= 120; // Assuming age should be between 18 and 120
+        }
+
+        function isValidHeight(answer) {
+            const height = parseFloat(answer);
+            return height > 50 && height < 300; // Assuming height in cm
+        }
+
+        function isValidWeight(answer) {
+            const weight = parseFloat(answer);
+            return weight > 20 && weight < 300; // Assuming weight in kg
+        }
+
+        function sendMessage() {
+            const userText = document.getElementById("userText").value;
+            if (userText.trim() === "") return;
+
+            const chatlog = document.getElementById("chatlog");
+            const userMessage = document.createElement("div");
+            userMessage.className = "message user-message";
+            userMessage.textContent = userText;
+            chatlog.appendChild(userMessage);
+
+            const currentQuestion = steps[currentStep];
+            let errorMessage = null;
+
+            if (currentQuestion.type === "email" && !isValidEmail(userText)) {
+                errorMessage = "Invalid email. Please provide a valid email address.";
+            } else if (currentQuestion.type === "yesno" && !isYesNoAnswer(userText)) {
+                errorMessage = "Invalid answer. Please answer 'yes' or 'no'.";
+            } else if (currentQuestion.type === "generalhealth" && !isValidGeneralHealth(userText)) {
+                errorMessage = "Invalid answer. Please rate your general health as 'poor', 'fair', 'good', 'very good', or 'excellent'.";
+            } else if (currentQuestion.type === "checkup" && !isValidCheckup(userText)) {
+                errorMessage = "Invalid answer. Please specify the time since your last checkup as '1', '2', '5', '5+', or 'Never'.";
+            } else if (currentQuestion.type === "sex" && !isValidSex(userText)) {
+                errorMessage = "Invalid answer. Please specify your gender as 'male' or 'female'.";
+            } else if (currentQuestion.type === "age" && !isValidAge(userText)) {
+                errorMessage = "Invalid age. Please enter a valid age (must be 18+).";
+            } else if (currentQuestion.type === "height" && !isValidHeight(userText)) {
+                errorMessage = "Invalid height. Please enter a valid height in centimetres.";
+            } else if (currentQuestion.type === "weight" && !isValidWeight(userText)) {
+                errorMessage = "Invalid weight. Please enter a valid weight in kilograms.";
+            }
+
+            if (errorMessage) {
+                const botMessage = document.createElement("div");
+                botMessage.className = "message bot-message";
+                botMessage.textContent = errorMessage;
+                chatlog.appendChild(botMessage);
+            } else {
+                document.getElementById(currentQuestion.field).value = userText;
+
+                if (currentStep < steps.length - 1) {
+                    const botMessage = document.createElement("div");
+                    botMessage.className = "message bot-message";
+                    botMessage.textContent = steps[currentStep + 1].question;
+                    chatlog.appendChild(botMessage);
+                } else {
+                    const botMessage = document.createElement("div");
+                    botMessage.className = "message bot-message";
+                    botMessage.textContent = "Thank you! Please wait while we process your information.";
+                    chatlog.appendChild(botMessage);
+                    document.getElementById("predictionForm").submit();
+                }
+
+                currentStep++;
+            }
+
+            document.getElementById("userText").value = "";
+            chatlog.scrollTop = chatlog.scrollHeight;
+        }
+
+        window.onload = initializeChat;
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>v
