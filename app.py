@@ -147,12 +147,13 @@ def login():
 
     return render_template('login.html')
 
+#only admin have authoity to create username and passsword
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        hashed_password = generate_password_hash(password, method='sha256')
+        hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
 
         if users_collection.find_one({'username': username}):
             flash('Username already exists')
@@ -266,6 +267,7 @@ def predict():
             response = rno
             response = response.replace('\n', '<br>')
             response = convert_bold_to_html(response)
+
 
         # Send email to the customer
         msg = Message('Disease Prediction Result', recipients=[customer_email])
