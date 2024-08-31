@@ -1,0 +1,111 @@
+/* style.css */
+
+body {
+  background-color: #f8f9fa;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.bg {
+  background-image: url('static/background.jpg');
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+#chatbox {
+  margin:auto;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 600px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  height: 85vh; /* 70% of viewport height */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: auto;
+}
+
+#chatlog {
+  max-height: calc(70vh - 120px); /* Adjusted height for messages and input area */
+  overflow-y: auto;
+  padding-bottom: 10px;
+}
+
+.message {
+  padding: 10px 15px;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  max-width: 80%;
+  word-wrap: break-word;
+}
+
+.bot-message {
+  background-color: #d1e7dd;
+  color: #0f5132;
+  align-self: flex-start;
+}
+
+.user-message {
+  background-color: #cfe2ff;
+  color: #084298;
+  align-self: flex-end;
+}
+
+#user-input {
+  width: 95%;
+  display: flex;
+  margin-top: 10px;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-bottom: 20px; /* Bottom margin for the input area */
+  margin-left: auto;
+  margin-right: auto;
+  position: sticky;
+  bottom: 10px;
+  background-color: #ffffff;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#userText {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  margin-right: 10px;
+  font-size: 16px;
+  width: 70%;
+  /* width: phle jaisa krna toh isko change krdo */
+}
+
+#userButton {
+  border-radius: 5px; /* Using pixels for a noticeable change */
+  padding: 10px;
+  /* margin-left: 10px; */
+  border: none;
+  background-color: #0d6efd;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.mymargin {
+  margin: 20px;
+}
+
+@media (max-width: 768px) {
+  #chatbox {
+      margin: 10px;
+      height: 80vh;
+  }
+}
+
+#button:hover {
+  background-color: #0b5ed7;
+}
