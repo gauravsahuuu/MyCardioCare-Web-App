@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="static\login_style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="container ubuntu-medium">
+        <div class="left"></div>
+
+        <section class="right">
+          <div class="heading">
+            <h2 class="ubuntu-medium">SignIn</h2>
+          </div>
+          <div class="content">
+            <form action="{{ url_for('login') }}" class="form" method="POST">
+              <label for="username" class="form-text">Username</label>
+              <br />
+              <input
+                type="text"
+                id="username"
+                name="username"
+                placeholder="Name"
+                class="input-text"
+                required
+              /><br /><br />
+
+              <label for="password" class="form-text">Password</label>
+              <br />
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Password"
+                class="input-text"
+                required
+              /><br /><br />
+
+              <button type="submit" class="btn ubuntu-medium">Login</button>
+            </form>
+            <p class="text">
+              For demo pupose, use:
+              <br />
+              username: gaurav_sahu
+              <br />
+              password: sidloduhai.
+              <!-- <a href="{{ url_for('register') }}">Register here</a> -->
+            </p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </body>
+</html>
