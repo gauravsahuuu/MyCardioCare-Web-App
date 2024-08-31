@@ -11,7 +11,7 @@ import re
 from werkzeug.security import generate_password_hash, check_password_hash  # Import required functions
 
 # Set up MongoDB client
-client = MongoClient('mongodb+srv://siddharthtomar003:oUIcyUk7xwraNjqp@cluster0.664o03z.mongodb.net/SIH',, serverSelectionTimeoutMS=50000)
+client = MongoClient('mongodb+srv://siddharthtomar003:oUIcyUk7xwraNjqp@cluster0.664o03z.mongodb.net/SIH', serverSelectionTimeoutMS=50000)
 db = client['SIH']
 collection = db['SIHcollection']
 
