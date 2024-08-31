@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Landing Page</title>
+    <link rel="stylesheet" href="static/landing_style.css">
+  </head>
+  <body>
+    <h1 class="gradient-text">Welcome to MyCardioCare</h1>
+
+    {% if session.get('username') %}
+    <div class="arrow">
+      <a href="{{ url_for('dashboard') }}" class="btn">Go to dashboard</a>
+    </div>
+    {% else %}
+    <div class="arrow">
+      <a href="{{ url_for('login') }}" class="btn"
+        >Login as a HealthCare Provider</a
+      >
+    </div>
+    {% endif %}
+    <div class="arrow">
+      <a href="{{ url_for('home') }}" class="btn">AI Based Heart Health Tool</a>
+    </div>
+  </body>
+</html>
