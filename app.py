@@ -124,6 +124,16 @@ users_collection = db['users']
 def landing():
     return render_template('landing.html')
 
+@app.route('/ping', methods=['GET'])
+def ping():
+    response = {
+        'success': True
+    }
+    return jsonify(response), 200
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
 @app.route('/index')
 def home():
     return render_template('index.html')
