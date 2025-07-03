@@ -107,11 +107,18 @@ body {
     
     /* width: phle jaisa krna toh isko change krdo */
   }
-  .mic{
-    position: absolute;
-    right:17%;
+  
+  .mic {
+    /* Remove absolute positioning */
+    /* position: absolute; */
+    /* right: 17%; */
+
+    position: relative; /* or remove position entirely */
+    margin-right: 10px; /* space between mic and input */
+    font-size: 20px;
     cursor: pointer;
-  }
+}
+
   
   #userButton {
     border-radius: 5px; /* Using pixels for a noticeable change */
@@ -156,15 +163,42 @@ body {
   text-decoration: none;
   color:inherit;
  }
- .btn-outline-success{
-   background-color: #0b5ed7;
-   padding: 0.3rem 2.3rem;
-   color: white;
-   font-size: 18px;
-   z-index: 0;
-  }
-  
-  
+
+.btn-outline-success {
+    background-color: #0b5ed7;
+    padding: 0.3rem 2.3rem;
+    color: white;
+    z-index: 0;
+    width: 17vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+.btn-outline-success .yo {
+    font-family: "Archivo Black", sans-serif;
+    font-weight: normal;
+    font-size: 1.2vw; /* Responsive size that fits inside 17vw button */
+    color: white;
+    text-decoration: none;
+    width: 100%;
+    text-align: center;
+    white-space: normal; /* allow wrapping */
+    overflow: visible;   /* don't hide */
+}
+
+@media (max-width: 740px) {
+    .btn-outline-success {
+        width: 25vw;
+    }
+
+    .btn-outline-success .yo {
+        font-size: 1.5vw;
+    }
+}
+
 
 .btn-outline-success:hover{
   cursor: pointer;
@@ -190,7 +224,7 @@ body {
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">
-                    <img src="../static/heart pic.png" alt="Bootstrap" width="160.4" height="55.8">
+                    <img src="../static/heart pic.png" alt="Bootstrap" width="95vw">
                 </a>
                 <!-- <a class="navbar-brand mx-auto" href="#">MyCardioCare</a> Centered Navbar Brand -->
                        
